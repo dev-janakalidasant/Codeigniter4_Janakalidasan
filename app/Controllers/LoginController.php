@@ -26,13 +26,13 @@ class LoginController extends BaseController
             $session->set('logged_in', true);
 
             // Redirect to a secured area or display a success message
-            return redirect()->to('/success');
+            return redirect()->to('/successmsg');
         } else {
             // Authentication failed, redirect to login form with an error message
             return redirect()->to('/loginpage')->with('error', 'Invalid email or password');
         }
     }
-    public function success()
+    public function successmsg()
     {
         $session = session();
     

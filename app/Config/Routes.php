@@ -11,7 +11,7 @@ $routes->get('/', 'RegistrationCOntroller::index');
 $routes->post('/submit', 'RegistrationController::submitForm');
 $routes->get('/loginpage', 'LoginController::loginForm');
 $routes->post('/login/loginsuccess', 'LoginController::loginsuccess');
-$routes->get('/success', 'LoginController::success');
+$routes->get('/successmsg', 'LoginController::successmsg');
 //old
 $routes->post('/submit-form', 'FormController::submitForm');
 $routes->post('/update/(:num)', 'FormController::update/$1');

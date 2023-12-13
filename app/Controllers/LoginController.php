@@ -1,43 +1,63 @@
 <?php
 
 namespace App\Controllers;
-
-class LoginController extends BaseController
+use App\Models\RegistrationModel;
+use CodeIgniter\Controller;
+class LoginController extends Controller
 {
    
-    public function loginForm()
+    public function index()
     {
-       
         return view('login');
     }
     public function loginsuccess(){
-        $session = session();
-
-        // Retrieve form data
+        $model = new RegistrationModel();
+         
+        // Get user input
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
+        // Validate user credentials
+        $user = $model->where('email', $email)
+            ->where('password', $password)
+            ->first();
 
-        // Retrieve user data from session
-        $userData = $session->get('user_data');
-
-        // Check if email and password match the stored data
-        if ($userData && $userData['email'] === $email && $userData['password'] === $password) {
-            // Authentication successful
-            $session->set('logged_in', true);
-
-            // Redirect to a secured area or display a success message
+        if ($user) {
+            // Redirect to a dashboard or home page
             return redirect()->to('/successmsg');
         } else {
-            // Authentication failed, redirect to login form with an error message
-            return redirect()->to('/loginpage')->with('error', 'Invalid email or password');
+            // Invalid credentials, redirect back to login page with an error message
+            return redirect()->to('/')->with('error', 'Invalid email or password');
+           
         }
+        
     }
+
+
+    // public function loginsuccess(){
+    //     $session = session();
+
+    //     // Retrieve form data
+    //     $email = $this->request->getPost('email');
+    //     $password = $this->request->getPost('password');
+
+    //     // Retrieve user data from session
+    //     $userData = $session->get('user_data');
+
+    //     // Check if email and password match the stored data
+    //     if ($userData && $userData['email'] === $email && $userData['password'] === $password) {
+    //         // Authentication successful
+    //         $session->set('logged_in', true);
+
+    //         // Redirect to a secured area or display a success message
+    //         return redirect()->to('/successmsg');
+    //     } else {
+    //         // Authentication failed, redirect to login form with an error message
+    //         return redirect()->to('/loginpage')->with('error', 'Invalid email or password');
+    //     }
+    // }
     public function successmsg()
     {
-        $session = session();
-    
-        // Retrieve user data from session
-        $userData = $session->get('user_data');
+       
     
         // Display success message with Bootstrap styling
         echo '<!DOCTYPE html>';
@@ -60,11 +80,6 @@ class LoginController extends BaseController
         echo '<div class="card-body">';
         echo '<h3 class="card-title text-center">Successfully Logged In</h3>';
     
-        if (!empty($userData)) {
-            echo '<p class="card-text">Name: ' . $userData['name'] . '</p>';
-            echo '<p class="card-text">Email: ' . $userData['email'] . '</p>';
-            // Add other fields as needed
-        }
     
         echo '</div>'; // Close card-body
         echo '</div>'; // Close card

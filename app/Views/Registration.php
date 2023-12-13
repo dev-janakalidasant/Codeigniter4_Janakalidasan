@@ -27,7 +27,7 @@
       </div>
       <div class="col-lg-4 card mt-5">
         <form action="<?= base_url('submit') ?>" method="post">
-          <h2 class="mt-2 text-center" style="color:#000;">Registration</h2>
+          <h2 class="mt-2 text-center" style="color:#fff;">Registration</h2>
           <div class="mb-3">
             <label for="examplename" class="form-label">Name :</label>
             <input type="text" class="form-control" name="name" id="examplename" aria-describedby="emailHelp" required>

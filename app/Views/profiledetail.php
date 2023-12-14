@@ -20,6 +20,11 @@ p{
     .card {
         background-color: #1515bb66;
     }
+    .butsen{
+        display: flex;
+        justify-content: space-between;
+        
+    }
 </style>
 
 <body>
@@ -69,7 +74,8 @@ p{
 
                         </div>
                     </div>
-                    <div class="d-flex justify-content-end">
+                    <div class=" butsen">
+                    <a type="button" class="btn btn-success" href="<?php echo base_url('dashborad'); ?>"><< Go Back</a>
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $profile['id'] ?>">Edit Profile</button>
                 </div>
 

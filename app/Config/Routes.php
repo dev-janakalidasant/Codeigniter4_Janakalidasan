@@ -10,7 +10,10 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'LoginController::index');
 $routes->get('/profilecreate', 'ProfileController::profile');
 $routes->post('/submit', 'RegistrationController::submitForm');
+
 $routes->post('/submitprofile', 'ProfileController::submitProfile');
+$routes->post('/submitupdates', 'ProfileController::submitupdate');
+
 $routes->get('/profilelist', 'ProfileController::profilelist');
 $routes->get('/profiledeatails', 'ProfileController::profilelist');
 //login

@@ -32,15 +32,18 @@ p{
     $userId = isset($userData['userid']) ? $userData['userid'] : null; 
     ?>
           
-            <h3 class="text-center mb-2">Profile Details</h3>
+            <h3 class="text-center mb-2"><b>Profile Details</b></h3>
             <div class="card p-3">
                 <?php foreach ($profiles as $profile): ?>
                     <?php if($profile['id'] === $userData['userid']): ?> 
                     <div class="row">
-                        <div class="col-lg-6 d-flex justify-content-center">
-                        <img src="../profileimage/<?php echo $profile['image'] ?>" style="height:300px">
-                        </div>
-                        <div class="col-lg-6">
+                    <div class="col-lg-6 d-flex justify-content-center mt-2">
+                    <div class="image-container" style="width: 300px; height: 300px; overflow: hidden; border-radius: 50%;">
+                       <img src="../profileimage/<?php echo $profile['image'] ?>" style="width: 100%; height: 100%; object-fit: cover;">
+                         </div>
+                      </div>
+
+                        <div class="col-lg-6 mt-3">
                             <div class="row">
                                 <div class="col-lg-4 head">
                                 <p><b>Name : </b></p>
@@ -67,21 +70,23 @@ p{
                         </div>
                     </div>
                     <div class="d-flex justify-content-end">
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit Profile</button>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $profile['id'] ?>">Edit Profile</button>
                 </div>
+
+
                 <!-- modal profile upadte -->
-                <div class="modal	modal-xl fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal	modal-xl fade" id="exampleModal<?= $profile['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Update Profile</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel<?= $profile['id'] ?>">Update Profile</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
       <div class="container mt-5">
             <div class="card p-3">
-                <form action="<?= base_url('submitprofile') ?>" method="post" enctype="multipart/form-data">
-                    <div class="d-none">
+                <form action="<?= base_url('submitupdates') ?>" method="post" enctype="multipart/form-data">
+                <div class="d-none">
                         <div class="mb-3 hidden">
                             <label for="examplename" class="form-label">Id :</label>
                             <input type="text" class="form-control" name="id" id="examplename"
@@ -94,7 +99,7 @@ p{
                             <div class="mb-3">
                                 <label for="examplename" class="form-label">FirstName :</label>
                                 <input type="text" class="form-control" name="firstname" id="examplename"
-                                    aria-describedby="emailHelp" value="<?= $profile['firstname'] ?>">
+                                    aria-describedby="emailHelp"  value="<?= $profile['firstname'] ?>">
                             </div>
                         </div>
                         <div class="col-lg-4">

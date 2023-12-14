@@ -32,10 +32,7 @@
             <label for="examplename" class="form-label">Name :</label>
             <input type="text" class="form-control" name="name" id="examplename" aria-describedby="emailHelp" required>
           </div>
-          <div class="mb-3">
-            <label for="examplename" class="form-label">Dob :</label>
-            <input type="date" class="form-control" name="dob" id="examplename" aria-describedby="emailHelp" required>
-          </div>
+        
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Email :</label>
             <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp"

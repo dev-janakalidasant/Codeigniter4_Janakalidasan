@@ -32,10 +32,38 @@
 <body>
     <div class="container mt-5">
         <div class="row">
+        <?php
+    // Retrieve user data from session
+    $session = session();
+    $userData = $session->get('user_data');
+    ?>
             <div class="col-lg-2"></div>
             <div class="col-lg-8">
                 <div class="card p-4">
-                    <form action="<?= base_url('submit-form') ?>" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h2>DashBoard</h2>
+                        </div>
+                        <div class="col-lg-6 d-flex justify-content-end">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Profile
+                                </button>
+                                <ul class="dropdown-menu">
+
+                                    <li><a class="dropdown-item"
+                                            href="<?php echo base_url('profiledeatails'); ?>">Profile Detail</a></li>
+                                    <li><a class="dropdown-item" href="<?php echo base_url('profilecreate'); ?>">Profile
+                                            Create</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <!-- <form action="<?= base_url('submit-form') ?>" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
                             <h1>User Registration</h1>
                             <label for="name" class="form-label">Name</label>
@@ -51,11 +79,11 @@
                         </div>
                         <div>
                             <label for="profile_image" class="custom-button">Choose Source Image</label>
-                            <!-- The actual file input (hidden) -->
+                        
                             <input type="file" name="profile_image" id="profile_image" required>
-                            <!-- Display the selected file name (optional) -->
+                         
                             <div class="file-name" id="file-name"></div>
-                            <!-- JavaScript to display the selected file name -->
+                         
                             <script>
                                 document.getElementById('profile_image').addEventListener('change', function () {
                                     // Display the selected file name
@@ -68,7 +96,8 @@
                         </div>
 
 
-                    </form>
+                    </form> -->
+
                 </div>
                 <br>
 

@@ -9,9 +9,11 @@ class FormController extends Controller
 {
     public function index()
     {
+        $session = session();
+        $userData = $session->get('user_data');
         $model = new FormModel();
         $data['forms'] = $model->findAll();
-        return view('form', $data);
+        return view('form', $data,$userData);
     }
 
 

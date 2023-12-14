@@ -20,10 +20,16 @@ class LoginController extends Controller
         $user = $model->where('email', $email)
             ->where('password', $password)
             ->first();
-
+       
         if ($user) {
+            $userId = $user['id'];
+            $session = session();
+            $userData = [
+                'userid' => $userId, // Note: In a real application, you should hash the password.
+            ];
+            $session->set('user_data', $userData);
             // Redirect to a dashboard or home page
-            return redirect()->to('/successmsg');
+            return redirect()->to('/dashborad')->with('userid', $userId);
         } else {
             // Invalid credentials, redirect back to login page with an error message
             return redirect()->to('/')->with('error', 'Invalid email or password');
@@ -32,6 +38,7 @@ class LoginController extends Controller
         
     }
 
+   
 
     // public function loginsuccess(){
     //     $session = session();

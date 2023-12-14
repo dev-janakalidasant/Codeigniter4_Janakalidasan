@@ -9,7 +9,7 @@ class RegistrationModel extends Model{
     protected $table = 'register_user'; // Change 'users' to your actual table name
     protected $primaryKey = 'id'; // Change 'id' to your actual primary key field
 
-    protected $allowedFields = ['name', 'Dob', 'email', 'password'];
+    protected $allowedFields = ['name', 'email', 'password'];
  
 }
 

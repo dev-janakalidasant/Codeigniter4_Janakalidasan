@@ -15,7 +15,6 @@ class RegistrationController extends Controller
         $model = new RegistrationModel();
         $data = [
             'name' => $this->request->getPost('name'),
-            'dob' => $this->request->getPost('dob'),
             'email' => $this->request->getPost('email'),
             // 'password' => password_hash($this->request->getPost('password'), PASSWORD_BCRYPT),
             'password' => $this->request->getPost('password'),

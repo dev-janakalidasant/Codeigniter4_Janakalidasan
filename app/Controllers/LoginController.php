@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use App\Models\RegistrationModel;
 use CodeIgniter\Controller;
+use App\Models\profileModel;
 class LoginController extends Controller
 {
    
@@ -23,13 +24,27 @@ class LoginController extends Controller
        
         if ($user) {
             $userId = $user['id'];
+            $profileState = 0;
+
+            $profilemodel = new ProfileModel();
+            $profiledata['users_profile'] = $profilemodel->findAll();
+            foreach ($profiledata['users_profile'] as $profile) {
+                if ($user['id'] == $profile['id']) {
+                    // Set profile state to '1' and exit the loop
+                    $profileState = '1';
+                    // print_r($userData);
+                    break;
+                }
+            }
             $session = session();
             $userData = [
                 'userid' => $userId, // Note: In a real application, you should hash the password.
+                'profileid'  =>  $profileState
             ];
             $session->set('user_data', $userData);
             // Redirect to a dashboard or home page
-            return redirect()->to('/dashborad')->with('userid', $userId);
+            return redirect()->to('/dashborad');
+            // print_r($userData);
         } else {
             // Invalid credentials, redirect back to login page with an error message
             return redirect()->to('/')->with('error', 'Invalid email or password');

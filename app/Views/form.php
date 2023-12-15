@@ -26,38 +26,39 @@
         .file-name {
             margin-top: 10px;
         }
+        .profiles{
+            display: flex;
+            justify-content: space-between;
+        }
     </style>
 </head>
 
 <body>
     <div class="container mt-5">
         <div class="row">
-        <?php
-    // Retrieve user data from session
-    $session = session();
-    $userData = $session->get('user_data');
-    ?>
-            <div class="col-lg-2"></div>
-            <div class="col-lg-8">
+            <?php
+            // Retrieve user data from session
+            $session = session();
+            $userData = $session->get('user_data');
+         
+            ?>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">
                 <div class="card p-4">
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-9">
                             <h2>DashBoard</h2>
                         </div>
-                        <div class="col-lg-6 d-flex justify-content-end">
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Profile
-                                </button>
-                                <ul class="dropdown-menu">
-
-                                    <li><a class="dropdown-item"
-                                            href="<?php echo base_url('profiledeatails'); ?>">Profile Detail</a></li>
-                                    <li><a class="dropdown-item" href="<?php echo base_url('profilecreate'); ?>">Profile
-                                            Create</a></li>
-                                </ul>
-                            </div>
+                        <div class="col-lg-3 profiles">
+                        <?php if ($userData['profileid'] == '1') : ?>
+                                <a class="" href="<?php echo base_url('profiledeatails'); ?>"><button class="btn btn-success">My Profile</button></a></li>
+                        <?php endif; ?>
+                        <?php if ($userData['profileid'] == '0') : ?>
+                            <a class="" href="<?php echo base_url('profilecreate'); ?>"><button class="btn btn-success">Profile
+                                                Create</button></a>
+                        <?php endif; ?>
+                        <a class="ml-3" href="<?php echo base_url('/'); ?>"><button class="btn btn-danger">
+                                                Log out</button></a>
                         </div>
 
                     </div>
@@ -102,12 +103,7 @@
                 <br>
 
                 <br>
-
-            </div>
-            <div class="col-lg-2"></div>
-        </div>
-
-        <div class="container">
+                <div class="container">
             <table class="table">
                 <thead>
                     <tr>
@@ -189,6 +185,11 @@
             </table>
         </div>
 
+            </div>
+            <div class="col-lg-1"></div>
+        </div>
+
+     
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
